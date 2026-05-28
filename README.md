@@ -35,12 +35,12 @@ npm install
 以下のコマンドで、パースと時間計算を実行します。
 
 ```bash
-npx ts-node src/index.ts <エクスポートしたXMLファイルのパス>
+npx ts-node src/index.ts <エクスポートしたXMLファイルのパス> <対象プレイリスト名>
 ```
 
 #### 実行例：
 ```bash
-npx ts-node src/index.ts test_setlist.xml
+npx ts-node src/index.ts test_setlist.xml "今日のセトリ"
 ```
 
 #### 出力結果の例：
