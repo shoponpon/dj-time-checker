@@ -79,6 +79,9 @@ function main() {
     return;
   }
 
+  const playlistName = args[1];
+  console.log("指定プレイリスト：", playlistName)
+
   const xmlPath = path.resolve(args[0]);
   if (!fs.existsSync(xmlPath)) {
     console.error(`Error: File not found at ${xmlPath}`);
@@ -131,7 +134,7 @@ function main() {
     // If it's a playlist node (Type === 1 or contains TRACKs)
     const tracks = ensureArray(node.TRACK);
     for (const t of tracks) {
-      if (t.Key !== undefined) {
+      if (t.Key !== undefined && node.Name === playlistName) {
         orderedTrackIds.push(String(t.Key));
       }
     }
@@ -161,8 +164,8 @@ function main() {
       }
     }
   } else {
-    console.log(`No playlists found. Processing all ${trackMap.size} tracks from the collection...`);
-    tracksToProcess = Array.from(trackMap.values());
+    console.log(`No playlists found.`);
+    return;
   }
 
   let totalDuration = 0;
